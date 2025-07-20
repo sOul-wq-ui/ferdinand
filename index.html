@@ -1,90 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Letter for Bibubs</title>
-  <style>
-    body {
-      background-color: #fce4ec;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-      font-family: Arial, sans-serif;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Letter for Bibubs</title>
+    <style>
+        body {
+            background-color: #ffd6e8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
 
-    .envelope-wrapper {
-      position: relative;
-      width: 300px;
-      height: 200px;
-      background: #ff80ab;
-      border: 2px solid #f06292;
-      border-radius: 8px;
-      overflow: hidden;
-      transition: transform 0.5s;
-    }
+        .envelope-wrapper {
+            text-align: center;
+        }
 
-    .letter {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background: white;
-      top: 100%;
-      left: 0;
-      padding: 20px;
-      box-sizing: border-box;
-      transition: top 0.5s;
-      text-align: center;
-    }
+        .envelope {
+            position: relative;
+            width: 250px;
+            height: 150px;
+            background: #ff5da2;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.5s ease;
+        }
 
-    .envelope-wrapper.open .letter {
-      top: 0;
-    }
+        .front-flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: #ff7db8;
+            clip-path: polygon(0 0, 100% 0, 50% 100%);
+            transition: transform 0.5s ease;
+        }
 
-    .btn-container {
-      position: absolute;
-      bottom: -50px;
-      width: 100%;
-      display: flex;
-      justify-content: space-around;
-    }
+        .letter {
+            position: absolute;
+            top: 100%;
+            left: 10%;
+            width: 80%;
+            height: auto;
+            background: white;
+            padding: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            border-radius: 5px;
+            text-align: center;
+            transition: top 0.5s ease;
+        }
 
-    button {
-      padding: 10px 20px;
-      border: none;
-      background: #f06292;
-      color: white;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 14px;
-    }
+        .envelope.open .front-flap {
+            transform: rotateX(180deg);
+        }
 
-    button:hover {
-      background: #ec407a;
-    }
-  </style>
+        .envelope.open .letter {
+            top: 10%;
+        }
+
+        .click-text {
+            margin-top: 15px;
+            color: #ff5da2;
+            font-style: italic;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-  <div class="envelope-wrapper" id="envelope">
-    <div class="letter">
-      <p>To: Bibubs</p>
-      <p>I Love Bibub</p>
-      <p>Aku sayangg banget sama Bibubs ❤️</p>
+    <div class="envelope-wrapper">
+        <div class="envelope" id="envelope">
+            <div class="front-flap"></div>
+            <div class="letter">
+                <p>To: Bibubs</p>
+                <p>I love Bibub</p>
+                <p>Aku sayang banget sama Bibubs ❤️</p>
+            </div>
+        </div>
+        <p class="click-text" id="clickText">Click to Open</p>
     </div>
-    <div class="btn-container">
-      <button onclick="openEnvelope()">Open</button>
-      <button onclick="closeEnvelope()">Close</button>
-    </div>
-  </div>
 
-  <script>
-    function openEnvelope() {
-      document.getElementById('envelope').classList.add('open');
-    }
-    function closeEnvelope() {
-      document.getElementById('envelope').classList.remove('open');
-    }
-  </script>
+    <script>
+        const envelope = document.getElementById('envelope');
+        const clickText = document.getElementById('clickText');
+
+        envelope.addEventListener('click', () => {
+            envelope.classList.toggle('open');
+            clickText.textContent = envelope.classList.contains('open') ? "Click to Close" : "Click to Open";
+        });
+
+        clickText.addEventListener('click', () => {
+            envelope.classList.toggle('open');
+            clickText.textContent = envelope.classList.contains('open') ? "Click to Close" : "Click to Open";
+        });
+    </script>
 </body>
 </html>

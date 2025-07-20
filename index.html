@@ -8,6 +8,7 @@
         body {
             background: #ffe6f0;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             height: 100vh;
@@ -60,15 +61,36 @@
         .envelope.open:before {
             transform: rotateX(180deg);
         }
+
+        .status-text {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #ff3399;
+            transition: all 0.3s ease;
+        }
     </style>
 </head>
 <body>
-    <div class="envelope" onclick="this.classList.toggle('open')">
+    <div class="envelope" onclick="toggleEnvelope()">
         <div class="letter">
             <h2>To: Bibubs</h2>
             <p>I love Bibub</p>
             <p>Aku sayangg banget sama bibubs ❤️</p>
         </div>
     </div>
+    <div id="status" class="status-text">Click to Open</div>
+
+    <script>
+        function toggleEnvelope() {
+            const envelope = document.querySelector('.envelope');
+            const status = document.getElementById('status');
+            envelope.classList.toggle('open');
+            if (envelope.classList.contains('open')) {
+                status.textContent = "Click to Close";
+            } else {
+                status.textContent = "Click to Open";
+            }
+        }
+    </script>
 </body>
 </html>

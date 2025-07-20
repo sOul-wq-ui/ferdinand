@@ -1,26 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
- <head>
-  <meta charset="UTF-8" />
-  <title>letter for bibubs</title>
-  <link rel="stylesheet" href="love-letter-2.css">
+<head>
+  <meta charset="UTF-8">
+  <title>Letter for Bibubs</title>
+  <style>
+    body {
+      background: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .envelope-wrapper {
+      width: 300px;
+      height: 200px;
+      position: relative;
+      cursor: pointer;
+      perspective: 1000px;
+    }
+
+    .envelope {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      background: #ff6f61;
+      transition: transform 1s;
+      transform-style: preserve-3d;
+    }
+
+    .envelope.open {
+      transform: rotateX(-180deg)   }
+
+    .letter {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: white;
+      padding: 20px;
+      box-sizing: border-box;
+      transform: rotateX(180deg);
+      backface-visibility: hidden;
+      text-align: center;
+    }
+
+    .letter p {
+      margin: 0;
+      font-size: 16px;
+    }
+  </style>
 </head>
 <body>
-    <!--tiktok meowish-->
-    <div class="envelope-wrapper">
-      <div id="envelope" class="close">
-        <div class="front flap"></div>
-         <div class="front pocket"></div>
-         <div class="letter">
-            <div class="words line1">To: bibubs</div>
-            <div class="words line2">I Love Bibub</div>
-            <div class="words line3">aku sayangg banget sama bibubs</div>
-            <div class="words line4"></div>
-        </div>
+  <div class="envelope-wrapper">
+    <div class="envelope">
+      <div class="letter">
+        <p>To: Bibubs</p>
+        <p>I Love Bibub</p>
+        <p>Aku sayangg banget sama bibubs</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.querySelector('.envelope-wrapper').addEventListener('click', function () {
+      document.querySelector('.envelope').classList.toggle('open');
+    });
+  </script>
 </body>
-<script>
-  document.querySelector('.envelope-wrapper').addEventListener('click', function () {
-    this.classList.toggle('open');
-  });
-</script>
 </html>
